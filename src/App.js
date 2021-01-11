@@ -33,7 +33,10 @@ class App extends React.Component {
                         id: snapshot.id,
                         ...snapshot.data()
                     }
-                });
+                }
+            );
+            console.log('state from on snapshot', this.state);
+
         })
       } else {
         this.setState(

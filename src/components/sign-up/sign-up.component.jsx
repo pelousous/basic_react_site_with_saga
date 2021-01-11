@@ -32,6 +32,7 @@ class SignUp extends React.Component {
         const {displayName,email,password,confirmPassword} = this.state;
 
         if(password !== confirmPassword) {
+            alert("passwords are not the same!!");
             return false;
         }
 
