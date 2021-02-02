@@ -10,7 +10,7 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import Header from './components/header/header.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
-import { currentUserSelector } from './redux/user/user.selector';
+import { currentUserSelector} from './redux/user/user.selector';
 import CheckoutPage from './pages/checkout/checkout.component';
 
 class App extends React.Component {
@@ -55,7 +55,9 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => (
-    { user: currentUserSelector(state) }
+    { 
+        user: currentUserSelector(state)
+    }
 )
 
 const mapDispatchToProps = dispatch => {
