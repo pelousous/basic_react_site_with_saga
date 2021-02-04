@@ -7,6 +7,11 @@ export const collectionsSelector = createSelector(
     shop => shop.collections
 )
 
+export const isFetchingSelector = createSelector(
+    shopSelector,
+    shop => shop.isFetching
+)
+
 export const selectCollectionsForPreview = createSelector(
     collectionsSelector,
     collections => collections ? Object.keys(collections).map(key => collections[key]) : []
@@ -15,4 +20,9 @@ export const selectCollectionsForPreview = createSelector(
 export const collectionSelector = pathParam => createSelector(
     collectionsSelector,
     collections => collections ? collections[pathParam] : null
+)
+
+export const selectIsCollectionLoaded = createSelector(
+  collectionsSelector,
+  collections => !!collections 
 )

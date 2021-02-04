@@ -58,9 +58,9 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
    return await batch.commit();    
 }
 
-export const convertCollectionSnapshotToMap = async (docs) => {
+export const convertCollectionSnapshotToMap = (docs) => {
 
-    const mapColl = await docs.map(el => {
+    const mapColl = docs.map(el => {
         const {title, items} = el.data();
         return ({
             routeName: encodeURI(title.toLowerCase()),
@@ -70,10 +70,12 @@ export const convertCollectionSnapshotToMap = async (docs) => {
         })
     })
 
-    return mapColl.reduce((acc, el) => {
+    const reducedColl = mapColl.reduce((acc, el) => {
         acc[el.title.toLowerCase()] = el;
         return acc;
     },{})
+
+    return reducedColl;
 }
 
 const provider = new firebase.auth.GoogleAuthProvider();
