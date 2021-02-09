@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import {fetchCollectionStartAsync} from '../../redux/shop/shop.actions';
+import {fetchCollectionStart} from '../../redux/shop/shop.actions';
 import {isFetchingSelector, selectIsCollectionLoaded} from '../../redux/shop/shop.selector';
 
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
@@ -17,7 +17,6 @@ class ShopPage extends React.Component {
 
     componentDidMount() {
         const {fetchCollections} = this.props
-        console.log('cdm props: ', this.props);
         // const collectionRef = firestore.collection('collections');
 
         // collectionRef.onSnapshot(async snapshot => {
@@ -30,8 +29,7 @@ class ShopPage extends React.Component {
 
     render() {
         const {isFetching, match, isCollectionLoaded} = this.props;
-        console.log('render props: ', this.props);
-        console.log('shop component props: ', this.props);
+        
         return (
             <div className='shop-page'>
                 <Route exact path={match.path} render={(props) => <CollectionsSpinner isLoading={isFetching} {...props} />} />
@@ -48,7 +46,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchCollections: () => dispatch(fetchCollectionStartAsync())
+        fetchCollections: () => dispatch(fetchCollectionStart())
     }
 }
 
